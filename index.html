@@ -8,167 +8,411 @@
 
   <meta
     name="description"
-    content="Temporary notice concerning CM v. Gamoise Baugh and proceedings in the Ontario Small Claims Court, Toronto."
+    content="An independent website documenting CM's account of a legal dispute involving Gamoise Garnett Charles Baugh from Toronto, Ontario, Canada."
   >
 
   <style>
+    :root {
+      --background: #f4f3ef;
+      --surface: #ffffff;
+      --text: #171717;
+      --muted: #606060;
+      --border: #deddd8;
+      --dark: #111111;
+      --accent: #8b1e2d;
+      --max-width: 1040px;
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      background: #111111;
-      color: #171717;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(17, 17, 17, 0.97);
+      color: white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      text-decoration: none;
+      color: #e9e9e9;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(17,17,17,0.84), rgba(17,17,17,0.84)),
+        linear-gradient(135deg, #2c2c2c, #111111);
+      color: white;
+      padding: 110px 24px 100px;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 13px;
+      color: #d9d9d9;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(46px, 8vw, 82px);
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-summary {
+      max-width: 760px;
+      margin: 28px 0 0;
+      font-size: clamp(19px, 2.5vw, 24px);
+      color: #e2e2e2;
+    }
+
+    .hero-meta {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    .tag {
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 72px 24px 100px;
+    }
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .notice {
+      background: #fff8e7;
+      border: 1px solid #e7d9ad;
+      border-left: 6px solid #9b7626;
+      padding: 26px 28px;
+      margin-bottom: 56px;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 13px;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-number {
+      display: block;
+      margin-bottom: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 19px;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.045);
+    }
+
+    .timeline {
+      position: relative;
+      margin: 34px 0 70px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 52px;
+      margin-bottom: 34px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 7px;
+      width: 16px;
+      height: 16px;
+      background: var(--surface);
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+    }
+
+    .date {
+      margin: 0 0 6px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: #333;
+    }
+
+    .transfer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .transfer {
+      background: #f8f8f6;
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .transfer-date {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .transfer-amount {
+      margin-top: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    .claim-box {
+      background: var(--dark);
+      color: white;
+      padding: 38px;
+      margin: 30px 0 70px;
+    }
+
+    .claim-total {
+      margin: 12px 0 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(46px, 8vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .claim-box ul {
+      margin: 22px 0 0;
+      padding-left: 22px;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+
+    .status-label {
+      margin-bottom: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #d1d1d1;
+      padding: 45px 24px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    .footer-title {
+      margin-bottom: 10px;
+      color: white;
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 75px;
+        padding-bottom: 75px;
+      }
+
+      .transfer-grid,
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .claim-box {
+        padding: 25px;
+      }
+    }
+
+    /* ===== TEMPORARY LEGAL NOTICE OVERLAY ===== */
+    body {
       overflow: hidden;
     }
 
-    /* Background version of the original website */
-    .background-site {
-      position: fixed;
-      inset: -30px;
-      min-height: calc(100vh + 60px);
-      background: #f4f3ef;
-      filter: blur(18px);
-      transform: scale(1.08);
+    .site-content {
+      min-height: 100vh;
+      filter: blur(26px);
+      transform: scale(1.05);
+      transform-origin: center;
       pointer-events: none;
       user-select: none;
     }
 
-    .background-header {
-      background: #111111;
-      color: white;
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    .background-brand {
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      font-size: 18px;
-    }
-
-    .background-nav {
-      display: flex;
-      gap: 26px;
-      font-size: 14px;
-      color: #e9e9e9;
-    }
-
-    .background-hero {
-      background: linear-gradient(135deg, #2b2b2b, #111111);
-      color: white;
-      padding: 100px 8%;
-    }
-
-    .background-label {
-      font-family: Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 13px;
-      color: #d4d4d4;
-    }
-
-    .background-hero h1 {
-      margin: 18px 0;
-      font-size: 72px;
-      line-height: 1.05;
-    }
-
-    .background-hero p {
-      max-width: 760px;
-      font-size: 23px;
-      color: #dddddd;
-      line-height: 1.6;
-    }
-
-    .background-main {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 70px 24px 120px;
-    }
-
-    .background-card {
-      background: white;
-      border: 1px solid #deddd8;
-      padding: 34px;
-      margin-bottom: 26px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.05);
-    }
-
-    .background-card h2 {
-      margin-top: 0;
-      font-size: 42px;
-    }
-
-    .background-card p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #444444;
-    }
-
-    .background-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .background-dark-card {
-      background: #111111;
-      color: white;
-      padding: 40px;
-      margin-top: 28px;
-    }
-
-    .background-dark-card strong {
-      display: block;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 52px;
-      margin-top: 12px;
-    }
-
-    /* Extra dark layer so background text cannot be read */
-    .background-dimmer {
+    .legal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(8, 8, 8, 0.70);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      pointer-events: none;
+      z-index: 9998;
+      background: rgba(0, 0, 0, 0.78);
     }
 
-    /* Foreground notice */
-    .notice-layer {
+    .legal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
+      overflow-y: auto;
     }
 
-    .notice-card {
+    .legal-card {
       width: 100%;
       max-width: 760px;
       padding: 58px 46px;
-      background: rgba(255, 255, 255, 0.97);
-      border: 1px solid rgba(255,255,255,0.7);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.5);
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.52);
       text-align: center;
     }
 
-    .notice-label {
-      margin: 0 0 16px;
+    .legal-label {
+      margin-bottom: 16px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 12px;
       font-weight: 700;
@@ -177,14 +421,16 @@
       color: #8b1e2d;
     }
 
-    h1 {
+    .legal-card h1 {
+      max-width: none;
       margin: 0;
       font-size: clamp(38px, 7vw, 58px);
       line-height: 1.08;
       letter-spacing: -0.025em;
+      color: #171717;
     }
 
-    .case-name {
+    .legal-case {
       margin: 18px 0 34px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 18px;
@@ -193,7 +439,7 @@
       color: #333333;
     }
 
-    .notice-card p {
+    .legal-card p {
       max-width: 620px;
       margin: 0 auto 20px;
       color: #4d4d4d;
@@ -201,114 +447,45 @@
       line-height: 1.75;
     }
 
-    .court {
+    .legal-card strong {
       color: #222222;
-      font-weight: 700;
     }
 
-    .updated {
+    .legal-updated {
       margin-top: 34px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 14px;
       color: #777777;
     }
 
-    @media (max-width: 700px) {
-      .background-hero h1 {
-        font-size: 48px;
-      }
-
-      .background-row {
-        grid-template-columns: 1fr;
-      }
-
-      .notice-card {
+    @media (max-width: 600px) {
+      .legal-card {
         padding: 42px 24px;
       }
 
-      .notice-card p {
+      .legal-card p {
         font-size: 17px;
       }
 
-      .case-name {
+      .legal-case {
         font-size: 16px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="background-site" aria-hidden="true">
-    <header class="background-header">
-      <div class="background-brand">CM v. Gamoise Baugh</div>
+  <div class="legal-backdrop" aria-hidden="true"></div>
 
-      <div class="background-nav">
-        <span>Overview</span>
-        <span>Timeline</span>
-        <span>Claim</span>
-        <span>Status</span>
-      </div>
-    </header>
+  <div class="legal-overlay" role="dialog" aria-modal="true" aria-labelledby="legal-notice-title">
+    <div class="legal-card">
+      <div class="legal-label">Temporary Notice</div>
 
-    <section class="background-hero">
-      <div class="background-label">Independent case documentation</div>
+      <h1 id="legal-notice-title">Website Temporarily Unavailable</h1>
 
-      <h1>CM v. Gamoise Baugh</h1>
-
-      <p>
-        My account of the events that led to a legal dispute concerning
-        funds transferred for a proposed investment.
-      </p>
-    </section>
-
-    <main class="background-main">
-      <section class="background-card">
-        <h2>Overview</h2>
-
-        <p>
-          This section contains a summary of the circumstances that led to
-          legal proceedings, including communications, transfers, repayment
-          requests and the current status of the matter.
-        </p>
-      </section>
-
-      <div class="background-row">
-        <section class="background-card">
-          <h2>Timeline</h2>
-
-          <p>
-            A chronological summary of key dates, communications and events
-            connected with the dispute.
-          </p>
-        </section>
-
-        <section class="background-card">
-          <h2>Current Status</h2>
-
-          <p>
-            Information concerning repayment status, court status and future
-            procedural updates.
-          </p>
-        </section>
-      </div>
-
-      <section class="background-dark-card">
-        Total principal claimed
-        <strong>$1,250.00</strong>
-      </section>
-    </main>
-  </div>
-
-  <div class="background-dimmer" aria-hidden="true"></div>
-
-  <main class="notice-layer">
-    <section class="notice-card">
-      <p class="notice-label">Temporary Notice</p>
-
-      <h1>Website Temporarily Unavailable</h1>
-
-      <div class="case-name">CM v. Gamoise Baugh</div>
+      <div class="legal-case">CM v. Gamoise Baugh</div>
 
       <p>
         This website is temporarily unavailable while legal proceedings are ongoing.
@@ -316,19 +493,267 @@
 
       <p>
         The matters previously described are the subject of legal proceedings in the
-        <span class="court">Ontario Small Claims Court, Toronto</span>.
+        <strong>Ontario Small Claims Court, Toronto</strong>.
       </p>
 
       <p>
-        Any future information published on this website will be limited to factual
-        updates and publicly available court records, where applicable.
+        Any future information published on this website will be limited to factual updates and publicly available court records, where applicable.
       </p>
 
-      <div class="updated">
+      <div class="legal-updated">
         <strong>Last updated:</strong> August 2026
       </div>
+    </div>
+  </div>
+
+  <div class="site-content">
+
+
+  <header>
+    <nav class="nav">
+      <div class="brand">CM v. Gamoise Baugh</div>
+
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#claim">Claim</a>
+        <a href="#status">Status</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Independent case documentation</p>
+
+      <h1>CM v. Gamoise Baugh</h1>
+
+      <p class="hero-summary">
+        My account of the events that led to a legal dispute concerning
+        $1,250 transferred for a proposed investment.
+      </p>
+
+      <div class="hero-meta">
+        <span class="tag">Toronto, Ontario, Canada</span>
+        <span class="tag">Amount claimed: $1,250</span>
+        <span class="tag">Last updated: August 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <div class="notice">
+      <strong>Important legal notice</strong>
+
+      This website presents my personal account and understanding of the
+      events described. The allegations have not been determined by a court.
+      This is an independent website and is not affiliated with Gamoise Baugh.
+    </div>
+
+    <section id="overview">
+      <div class="section-heading">
+        <span class="section-number">Section 01</span>
+        <h2>Overview</h2>
+
+        <p class="section-intro">
+          The following summary explains the circumstances that led me to seek
+          repayment through legal proceedings.
+        </p>
+      </div>
+
+      <div class="card">
+        <p>
+          I met Gamoise Baugh through the dating application Hinge in early
+          May 2026. We communicated regularly by telephone, Instagram and text
+          message.
+        </p>
+
+        <p>
+          During our conversations, Mr. Baugh told me that he invested in gold
+          and managed investments for other people. He asked whether I would
+          be interested in investing money with him and represented that the
+          investment offered a high return within a short period.
+        </p>
+
+        <p>
+          In June 2026, Mr. Baugh asked me to transfer money by Interac
+          e-Transfer so that he could invest it on my behalf. He told me that 
+          the money would be returned within two to three weeks, even if 
+          repayment had to come from his own personal paycheque.
+        </p>
+      </div>
     </section>
+
+    <section id="timeline">
+      <div class="section-heading">
+        <span class="section-number">Section 02</span>
+        <h2>Timeline of events</h2>
+      </div>
+
+      <div class="timeline">
+
+        <article class="timeline-item">
+          <p class="date">Early May 2026</p>
+          <h3>Initial contact</h3>
+          <p>
+            I met Mr. Baugh through Hinge. We began communicating regularly
+            through telephone calls, Instagram and text messages.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <p class="date">June 2026</p>
+          <h3>Proposed investment</h3>
+          <p>
+            Mr. Baugh asked me to transfer money so that it could be invested
+            on my behalf. I understood that the funds would be returned within
+            two to three weeks.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <p class="date">June 12, 2026</p>
+          <h3>First transfer</h3>
+          <p>
+            I sent an Interac e-Transfer in the amount of $1,000.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <p class="date">June 15, 2026</p>
+          <h3>Second transfer</h3>
+          <p>
+            I sent an additional Interac e-Transfer in the amount of $250.
+            On the same date, Mr. Baugh told me that his father had suffered
+            a stroke and was in hospital.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <p class="date">June 19, 2026</p>
+          <h3>Request for further funds</h3>
+          <p>
+            Mr. Baugh told me that his father was dying, that he had
+            unexpected expenses and asked me to send additional money for
+            flights. I declined. During that conversation, I understood that
+            he again said my $1,250 would be returned the following week.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <p class="date">Following weeks</p>
+          <h3>Requests for repayment</h3>
+          <p>
+            I made multiple requests for repayment. I have not received any
+            portion of the $1,250, and I have not received documentation
+            showing that the funds were invested as represented.
+          </p>
+        </article>
+
+      </div>
+
+      <div class="transfer-grid">
+        <div class="transfer">
+          <div class="transfer-date">June 12, 2026</div>
+          <div class="transfer-amount">$1,000</div>
+        </div>
+
+        <div class="transfer">
+          <div class="transfer-date">June 15, 2026</div>
+          <div class="transfer-amount">$250</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="claim">
+      <div class="section-heading">
+        <span class="section-number">Section 03</span>
+        <h2>Amount claimed</h2>
+
+        <p class="section-intro">
+          The claim seeks repayment of the funds transferred and any amounts
+          properly recoverable through the court process.
+        </p>
+      </div>
+
+      <div class="claim-box">
+        <div>Total principal claimed</div>
+        <div class="claim-total">$1,250.00</div>
+
+        <ul>
+          <li>$1,250 representing the funds transferred</li>
+          <li>
+            Pre-judgment and post-judgment interest as permitted by applicable law
+          </li>
+          <li>Court filing fees and allowable service costs</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="section-heading">
+        <span class="section-number">Section 04</span>
+        <h2>Current status</h2>
+      </div>
+
+      <div class="status-grid">
+
+        <div class="card">
+          <div class="status-label">Repayment status</div>
+          <h3>No repayment received</h3>
+          <p>
+            As of the date of this update on August 5, 2026, I have not received repayment of
+            the $1,250 described above.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="status-label">Court status</div>
+          <h3>Allegations not yet determined</h3>
+          <p>
+            The allegations and legal claims described on this website have
+            not been decided by a court.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <span class="section-number">Section 05</span>
+        <h2>Publication notice</h2>
+      </div>
+
+      <div class="card">
+        <p>
+          This website is intended to document my personal experience and the
+          basis of my legal claim. It should not be interpreted as a statement
+          that any person has been convicted of, or found liable for, fraud,
+          theft or any other wrongdoing.
+        </p>
+
+        <p>
+          Information may be corrected or updated as the legal proceedings
+          develop or as additional documentation becomes available.
+        </p>
+
+        <p><strong>Last updated:</strong> August 2026</p>
+      </div>
+    </section>
+
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-title">CM v. Gamoise Baugh</div>
+      Independent website. The allegations described have not been determined
+      by a court.
+    </div>
+  </footer>
+
+  </div>
 
 </body>
 </html>
