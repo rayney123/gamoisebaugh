@@ -369,7 +369,8 @@
       }
     }
 
-    /* ===== TEMPORARY LEGAL NOTICE OVERLAY ===== */
+    /* ===== TEMPORARY LEGAL NOTICE + CONTACT FORM ===== */
+
     body {
       overflow: hidden;
     }
@@ -403,8 +404,8 @@
 
     .legal-card {
       width: 100%;
-      max-width: 760px;
-      padding: 58px 46px;
+      max-width: 780px;
+      padding: 52px 44px;
       background: rgba(255, 255, 255, 0.98);
       border: 1px solid rgba(255, 255, 255, 0.75);
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.52);
@@ -431,7 +432,7 @@
     }
 
     .legal-case {
-      margin: 18px 0 34px;
+      margin: 18px 0 30px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 18px;
       font-weight: 700;
@@ -439,12 +440,12 @@
       color: #333333;
     }
 
-    .legal-card p {
-      max-width: 620px;
-      margin: 0 auto 20px;
+    .legal-card > p {
+      max-width: 640px;
+      margin: 0 auto 18px;
       color: #4d4d4d;
-      font-size: 19px;
-      line-height: 1.75;
+      font-size: 18px;
+      line-height: 1.7;
     }
 
     .legal-card strong {
@@ -452,23 +453,120 @@
     }
 
     .legal-updated {
-      margin-top: 34px;
+      margin-top: 26px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 14px;
       color: #777777;
     }
 
-    @media (max-width: 600px) {
-      .legal-card {
-        padding: 42px 24px;
+    .contact-panel {
+      margin-top: 34px;
+      padding-top: 30px;
+      border-top: 1px solid #dddddd;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .contact-panel h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.2;
+      color: #171717;
+    }
+
+    .contact-intro {
+      margin: 0 0 20px;
+      color: #666666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #333333;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      background: #ffffff;
+      padding: 12px 13px;
+      font: inherit;
+      font-size: 15px;
+      color: #222222;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-submit {
+      width: 100%;
+      border: 0;
+      border-radius: 3px;
+      background: #171717;
+      color: #ffffff;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .contact-submit:hover {
+      background: #333333;
+    }
+
+    .optional {
+      font-weight: 400;
+      color: #777777;
+    }
+
+    .form-note {
+      margin: 10px 0 0;
+      color: #777777;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .legal-overlay {
+        align-items: flex-start;
       }
 
-      .legal-card p {
-        font-size: 17px;
+      .legal-card {
+        margin: 20px 0;
+        padding: 38px 22px;
+      }
+
+      .legal-card > p {
+        font-size: 16px;
       }
 
       .legal-case {
         font-size: 16px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
     }
 
@@ -497,11 +595,59 @@
       </p>
 
       <p>
-        Any future information published on this website will be limited to factual updates and publicly available court records, where applicable.
+        Any future information published on this website will be limited to factual
+        updates and publicly available court records, where applicable.
       </p>
 
       <div class="legal-updated">
         <strong>Last updated:</strong> August 2026
+      </div>
+
+      <div class="contact-panel">
+        <h2>Contact / Feedback</h2>
+        <p class="contact-intro">
+          If you have information, feedback, or a correction regarding this website,
+          you may submit it below.
+        </p>
+
+        <!-- Replace YOUR_FORM_ID with the ID Formspree gives you -->
+        <form action="https://formspree.io/f/mjybobyg" method="POST">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name <span class="optional">(optional)</span></label>
+              <input id="name" name="name" type="text" autocomplete="name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span class="optional">(optional)</span></label>
+              <input id="email" name="email" type="email" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="purpose">Purpose</label>
+            <select id="purpose" name="purpose" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="Correction">Correction</option>
+              <option value="Feedback">Feedback</option>
+              <option value="Information">Information</option>
+              <option value="Court-related inquiry">Court-related inquiry</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button class="contact-submit" type="submit">Submit</button>
+
+          <p class="form-note">
+            Providing a name or email address is optional. Include an email address if you would like a response.
+          </p>
+        </form>
       </div>
     </div>
   </div>
