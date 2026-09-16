@@ -461,6 +461,18 @@
       color: #777777;
     }
 
+
+    .visitor-counter {
+      margin-top: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      color: #777777;
+    }
+
+    .visitor-counter strong {
+      color: #222222;
+    }
+
     .contact-panel {
       margin-top: 30px;
       padding-top: 28px;
@@ -608,6 +620,10 @@
 
       <div class="legal-updated">
         <strong>Last updated:</strong> September 2026
+      </div>
+
+      <div class="visitor-counter" aria-live="polite">
+        Website visits: <strong id="visitorCount">—</strong>
       </div>
 
       <div class="contact-panel">
@@ -901,6 +917,33 @@
   </footer>
 
   </div>
+
+
+<script
+  src="https://page-views-api.ratneshc.com/script"
+  data-site="gamoisebaugh.com"
+  data-path="/"
+  defer
+></script>
+
+<script>
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      fetch("https://page-views-api.ratneshc.com/api/v1/views?site=gamoisebaugh.com&path=/")
+        .then(function (response) {
+          if (!response.ok) throw new Error("Counter unavailable");
+          return response.json();
+        })
+        .then(function (data) {
+          document.getElementById("visitorCount").textContent =
+            Number(data.views || 0).toLocaleString();
+        })
+        .catch(function () {
+          document.getElementById("visitorCount").textContent = "Unavailable";
+        });
+    }, 800);
+  });
+</script>
 
 </body>
 </html>
