@@ -588,6 +588,11 @@
       <div class="legal-case">CM v. Gamoise Baugh</div>
 
       <p>
+        I met Gamoise Baugh through the dating application Hinge in May 2026.
+        This legal proceeding concerns <strong>$1,250 that I claim is owed to me by Mr. Baugh.</strong>
+      </p>
+
+      <p>
         This website is temporarily unavailable while legal proceedings are ongoing.
       </p>
 
@@ -602,8 +607,12 @@
       </p>
 
       <div class="legal-updated">
-        <strong>Last updated:</strong> August 2026
+        <strong>Last updated:</strong> September 2026
       </div>
+
+      <button type="button" class="view-original-button" id="viewOriginalButton">
+        View Original Published Information
+      </button>
 
       <div class="contact-panel">
         <h2>Contact / Feedback</h2>
@@ -896,6 +905,14 @@
   </footer>
 
   </div>
+
+
+<script>
+  document.getElementById('viewOriginalButton').addEventListener('click', function () {
+    document.body.classList.add('original-visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
